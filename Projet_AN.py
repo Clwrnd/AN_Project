@@ -12,13 +12,12 @@ import random as rand
 
 
 def BA (a, b ,N) :
-    liste = [] 
+    mini = f(rand.uniform(a, b))
     for i in range (N) :
-        liste.append(f(rand.uniform(a, b))) ;  
-    print(liste)
-    z = min(liste) ;
-    
-    return z ;
+        z = f(rand.uniform(a, b))
+        if (z<mini) :
+            mini = z
+    return mini ;
 
 def f(x) :
     f = x**3 - 3 * x**2 + 2 * x + 5 ;
@@ -27,11 +26,15 @@ def f(x) :
 ##plot de l'erreur
 
 N = 100
-min = 4.6150998205402494903272341463320283629015988324865820826542651156
+mini = 4.6150998205402494903272341463320283629015988324865820826542651156
 erreur = []
 print(erreur)
 
-for i in range(2,N) :
+for i in range(N) :
+    erreur.append(abs(BA(0,3,i) - mini)) ;
+x=[i+1 for i in range(N)]    
+plt.plot(x, erreur)
+
     erreur.append(abs(BA(0,3,i) - min)) ;
 x=[i+1 for i in range(N)]    
 plt.plot(N, erreur)
