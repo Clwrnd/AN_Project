@@ -8,17 +8,25 @@ Created on Tue Apr 16 10:30:51 2024
 from math import *
 from matplotlib.pyplot import *
 from numpy import *
+A = 0
 
-def rhok(y,A) : 
-    if (G(y) == 0) :
+b = Ax
+
+def G(y,A,b) :
+    G = 2 * (A * y - b)
+    return G
+
+def rhok(y,A,b) : 
+    if (G(y,A,b) == 0) :
         rhok = 0 
         return rhok
-    else : ##trouver la fonctio pour faire la transposée
-        rhok = absolute(G(y)**2)/(2 * T G(y) * A *G(y))
+    else : 
+        rhok = absolute(G(y,A,b)**2)/(2 * G(y,A,b) * np.transpose(A) * G(y,A,b))
         return rhok
     
 
-def gradPO(eps, MaxIter, rho, yk, phi): 
-    
+def gradPO(eps, MaxIter, a, b): 
+    yk = 
     while (N>MaxIter or absolute(ykplus1-yk)<eps) :
-        yplus1 = yk - rhok
+        ykplus1 = yk - rhok
+        
