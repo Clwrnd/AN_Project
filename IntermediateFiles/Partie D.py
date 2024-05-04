@@ -10,6 +10,8 @@ from matplotlib.pyplot import *
 from numpy import *
 A = 0
 
+eps = 10**(5)
+
 b = Ax
 
 def G(y,A,b) :
@@ -28,5 +30,8 @@ def rhok(y,A,b) :
 def gradPO(eps, MaxIter, a, b): 
     yk = 
     while (N>MaxIter or absolute(ykplus1-yk)<eps) :
-        ykplus1 = yk - rhok
+        ykplus1 = yk - rhok * G(yk)
+        yk = yplus1
+        N= N + 1
+    return yk
         
